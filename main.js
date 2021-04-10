@@ -23,7 +23,11 @@ app.post("/caesar", (req, res) => {
   const deciphered = {
     result: result,
   };
-  res.send(JSON.stringify(deciphered));
+  if (req.body.phrase) {
+    res.send(JSON.stringify(deciphered));
+  } else {
+    res.status(400).send("Invalid input");
+  }
 });
 
-app.listen(3001);
+app.listen(process.env.PORT);
